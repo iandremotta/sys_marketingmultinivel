@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `db_mmn` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `db_mmn`;
 -- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
 --
 -- Host: localhost    Database: db_mmn
@@ -16,24 +18,37 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Dumping data for table `patentes`
+-- Table structure for table `patentes`
 --
 
-LOCK TABLES `patentes` WRITE;
-/*!40000 ALTER TABLE `patentes` DISABLE KEYS */;
-INSERT INTO `patentes` VALUES (1,'Iniciante',0),(2,'Junior',1),(3,'Diretor',3),(4,'Diretor Sênior',5),(5,'Executivo',10);
-/*!40000 ALTER TABLE `patentes` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `patentes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `patentes` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(45) NOT NULL,
+  `min` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `usuarios`
+-- Table structure for table `usuarios`
 --
 
-LOCK TABLES `usuarios` WRITE;
-/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,NULL,4,'Sistema','sistema@gmail.com','21232f297a57a5a743894a0e4a801fc3'),(2,1,2,'André','andre@gmail.com','19984dcaea13176bbb694f62ba6b5b35'),(3,1,3,'André','iandremotta@gmail.com','abc461cdf91e2090469bf38a7d229f42'),(4,2,2,'marcelo','marcelo@gmail.com','fbe7c0d796eec1ac3b2db675e033919c'),(5,4,1,'Diogenes','diogenes@gmail.com','3192e6060caca1e6f3aaf7d5fdc679b7'),(6,3,1,'Tiago','tiago@gmail.com','ea5c1d6e9b8aaef1dd8db58d1667720a'),(7,3,1,'Guilherme','guilherme@gmail.com','4382f5a19a7059d7737ed77a37bc1cb8'),(8,3,1,'Erico','erico@gmail.com','259499d668d04199fb176a7d0f5b7889');
-/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `usuarios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `usuarios` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_pai` int DEFAULT NULL,
+  `patente` int NOT NULL DEFAULT '1',
+  `nome` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `senha` varchar(32) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -44,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-26 10:47:03
+-- Dump completed on 2020-06-26 10:50:48
